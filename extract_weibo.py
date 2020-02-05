@@ -22,11 +22,11 @@ def fetch_data(query_val, page_id):
     card_group = json.loads(resp.text)['data']['cards'][0]['card_group']
     print('url：', resp.url, ' --- 条数:', len(card_group))
 
-    mblogs = []  
+    mblogs = []  # 保存处理过的微博
     for card in card_group:
         mblog = card['mblog']
         blog = {'mid': mblog['id'],  # 微博id
-                'text': clean_text(mblog['text']),  # 微博
+                'text': clean_text(mblog['text']),  # 内容
                 'userid': str(mblog['user']['id']),  # 用户id
                 'username': mblog['user']['screen_name'],  # 用户名
                 'reposts_count': mblog['reposts_count'],  # 转发
@@ -60,9 +60,9 @@ def fetch_pages(query_val, page_num):
     print("去重后：", len(mblogs))
 
     # 保存文件
-    fp = open('result_{}.json'.format(query_val), 'w', encoding='utf-8')
+    fp = open('{}.json'.format(query_val), 'w', encoding='utf-8')
     json.dump(mblogs, fp, ensure_ascii=False, indent=4)
-    print("已保存至 result_{}.json".format(query_val))
+    print("已保存至 {}.json".format(query_val))
 
 
 if __name__ == '__main__':
