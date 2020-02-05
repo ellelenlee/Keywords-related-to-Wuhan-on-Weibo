@@ -5,3 +5,5 @@
 2. 通过weibo api对搜索结果进行爬虫，结果以json格式保存。
 3. 通过jieba分词器进行分词和关键词提取。
 4. 整理高频词，删除不必要的单词后，通过wordcloud导出词云。
+
+参考：https://github.com/gaussic/weibo_wordcloud
